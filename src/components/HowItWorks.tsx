@@ -1,26 +1,52 @@
 "use client";
-import React from "react";
 import { motion } from "framer-motion";
-import { FaMedal, FaTrophy, FaUsers } from "react-icons/fa";
+import React from "react";
+import {
+    FaMoneyBillAlt,
+    FaPlus,
+    FaTrophy,
+    FaUsers,
+    FaUserTie,
+} from "react-icons/fa";
 
-const steps = [
+const managerSteps = [
     {
-        icon: <FaMedal className="text-color-accent w-10 h-10 mb-4" />,
-        title: "Create Tournament",
+        icon: <FaUsers className="text-purple-500 w-10 h-10 mb-4" />,
+        title: "Manage Multiple Teams",
         description:
-            "Set up your tournament with custom rules, match types, and more.",
+            "Create and manage as many teams as needed for different events and organizations.",
     },
     {
-        icon: <FaUsers className="text-color-accent w-10 h-10 mb-4" />,
-        title: "Add Players",
+        icon: <FaTrophy className="text-purple-500 w-10 h-10 mb-4" />,
+        title: "Join Tournaments",
         description:
-            "Invite players and assign them to teams with just a few clicks.",
+            "Easily enroll any of your teams into ongoing tournaments.",
     },
     {
-        icon: <FaTrophy className="text-color-accent w-10 h-10 mb-4" />,
-        title: "Track Results",
+        icon: <FaUserTie className="text-purple-500 w-10 h-10 mb-4" />,
+        title: "Work with Multiple Organizations",
         description:
-            "Live scoring, automated ranking, and progress tracking built-in.",
+            "Act as a manager in different tournaments organized by various organizations.",
+    },
+];
+
+const organizationSteps = [
+    {
+        icon: <FaPlus className="text-purple-500 w-10 h-10 mb-4" />,
+        title: "Create Organization",
+        description:
+            "Managers can also create organizations to host tournaments.",
+    },
+    {
+        icon: <FaTrophy className="text-purple-500 w-10 h-10 mb-4" />,
+        title: "Organize Tournaments",
+        description: "Host paid or free tournaments with custom rules.",
+    },
+    {
+        icon: <FaMoneyBillAlt className="text-purple-500 w-10 h-10 mb-4" />,
+        title: "Manage Payments",
+        description:
+            "For paid tournaments, easily handle registrations and payments.",
     },
 ];
 
@@ -30,33 +56,77 @@ const HowItWorks: React.FC = () => {
             <div className="container text-center">
                 <motion.h2
                     initial={{ opacity: 0, y: -30 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="text-3xl md:text-5xl font-bold font-Orbitron mb-12"
+                    className="text-3xl md:text-5xl font-bold font-Orbitron mb-16"
                 >
                     How It Works
                 </motion.h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    {steps.map((step, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.2 }}
-                            className="bg-card p-8 rounded-2xl shadow-md border border-border"
-                        >
-                            <div className="flex justify-center">
-                                {step.icon}
-                            </div>
-                            <h3 className="text-xl font-semibold font-Montserrat mt-4 mb-2 text-text-primary">
-                                {step.title}
-                            </h3>
-                            <p className="text-text-secondary font-Inter">
-                                {step.description}
-                            </p>
-                        </motion.div>
-                    ))}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                    {/* Manager Steps */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <h3 className="text-2xl font-semibold font-Orbitron mb-6">
+                            For Managers
+                        </h3>
+                        <div className="space-y-6">
+                            {managerSteps.map((step, index) => (
+                                <div
+                                    key={index}
+                                    className="bg-card p-6 rounded-xl shadow-lg border border-border text-left transition-transform transform hover:border-glow-blue"
+                                >
+                                    <div className="flex items-center gap-4">
+                                        {step.icon}
+                                        <div>
+                                            <h4 className="text-lg font-semibold font-Montserrat mb-1">
+                                                {step.title}
+                                            </h4>
+                                            <p className="text-sm text-text-secondary font-Inter">
+                                                {step.description}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </motion.div>
+
+                    {/* Organization Steps */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                    >
+                        <h3 className="text-2xl font-semibold font-Orbitron mb-6">
+                            For Organizations
+                        </h3>
+                        <div className="space-y-6">
+                            {organizationSteps.map((step, index) => (
+                                <div
+                                    key={index}
+                                    className="bg-card p-6 rounded-xl shadow-lg border border-border text-left transition-transform transform hover:border-glow-blue"
+                                >
+                                    <div className="flex items-center gap-4">
+                                        {step.icon}
+                                        <div>
+                                            <h4 className="text-lg font-semibold font-Montserrat mb-1">
+                                                {step.title}
+                                            </h4>
+                                            <p className="text-sm text-text-secondary font-Inter">
+                                                {step.description}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </motion.div>
                 </div>
             </div>
         </section>

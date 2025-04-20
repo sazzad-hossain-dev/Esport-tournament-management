@@ -15,6 +15,7 @@
   --color-accent-hover: #5B21B6;
   --color-border: #1E1E3F;
   --color-glow-blue: #38BDF8;
+  --color-muted: #141426;
 }
 
 .container {
@@ -25,4 +26,41 @@
 }
 .flex-between {
   @apply flex justify-between items-center
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.FMT__container {
+  overflow: hidden;
+  position: relative;
+}
+
+.FMT__container__contents {
+  display: flex;
+  flex-wrap: nowrap;
+  animation: scroll-left 30s linear infinite;
+}
+
+.FMT__container__contents div {
+  min-width: 300px; /* Adjust width of the individual testimonial */
+  margin-right: 20px;
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee linear infinite;
 }

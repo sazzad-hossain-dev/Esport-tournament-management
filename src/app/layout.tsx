@@ -1,3 +1,5 @@
+import Footer from "@/components/Footer"; // Assuming Footer is in the components folder
+import Header from "@/components/Header"; // Assuming Header is in the components folder
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -13,7 +15,18 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body>{children}</body>
+            <body className="flex flex-col min-h-screen bg-bg">
+                {/* Header */}
+                <div className="fixed top-0 left-0 w-full z-50">
+                    <Header />
+                </div>
+
+                {/* Main Content */}
+                <main className="flex-grow mt-20 ">{children}</main>
+
+                {/* Footer */}
+                <Footer />
+            </body>
         </html>
     );
 }
