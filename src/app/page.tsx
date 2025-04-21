@@ -2,10 +2,8 @@ import { FC } from "react";
 
 // Importing components
 
-import CTA from "@/components/CTA";
 import FAQ from "@/components/FAQ";
 import Features from "@/components/Feature";
-import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
 import Pricing from "@/components/Pricing";
@@ -20,9 +18,7 @@ const Home: FC = () => {
             <Features />
             <Testimonial />
             <Pricing />
-            <CTA />
             <FAQ />
-            <Footer />
         </div>
     );
 };

@@ -1,5 +1,4 @@
 "use client";
-import { useEffect, useRef } from "react";
 
 const testimonials = [
     {
@@ -24,68 +23,37 @@ const testimonials = [
     },
 ];
 
-const TestimonialTicker = () => {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const contentRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        let animationFrameId: number;
-        const container = containerRef.current;
-        const content = contentRef.current;
-
-        if (!container || !content) return;
-
-        const scrollSpeed = 0.5;
-
-        const scroll = () => {
-            if (container.scrollLeft >= content.scrollWidth / 2) {
-                container.scrollLeft = 0;
-            } else {
-                container.scrollLeft += scrollSpeed;
-            }
-            animationFrameId = requestAnimationFrame(scroll);
-        };
-
-        animationFrameId = requestAnimationFrame(scroll);
-
-        return () => cancelAnimationFrame(animationFrameId);
-    }, []);
+export default function TestimonialTicker() {
+    const duplicated = [...testimonials, ...testimonials];
 
     return (
-        <section className="bg-bg py-24 text-text-primary">
+        <section className="bg-bg py-24 text-text-primary overflow-hidden">
             <div className="container">
                 <h2 className="text-3xl md:text-5xl font-bold font-Orbitron text-center mb-16">
                     What Our Users Say
                 </h2>
 
-                <div
-                    ref={containerRef}
-                    className="overflow-hidden whitespace-nowrap w-full"
-                >
-                    <div ref={contentRef} className="inline-flex">
-                        {[...testimonials, ...testimonials].map(
-                            (testimonial, index) => (
-                                <div
-                                    key={index}
-                                    className="bg-card p-6 rounded-2xl shadow-md max-w-xs w-[20rem] mx-4 flex-shrink-0 break-words"
-                                >
-                                    <p className="text-text-secondary text-sm font-Inter italic leading-relaxed break-words">
-                                        {testimonial.quote}
-                                    </p>
-                                    <p className="text-xl font-semibold font-Montserrat text-center mt-4">
-                                        {testimonial.name}
-                                    </p>
-                                    <p className="text-center text-sm text-text-secondary">
-                                        {testimonial.role}
-                                    </p>
-                                </div>
-                            )
-                        )}
+                <div className="overflow-hidden max-w-[1440px] mask-[linear-gradient(to_right,transparent_0%,white_30%,white_70%,transparent_100%)]">
+                    <div className="flex w-[max-content] flex-nowrap gap-[1rem] animate-marquee">
+                        {duplicated.map((t, i) => (
+                            <div
+                                key={i}
+                                className="bg-card p-6 rounded-2xl shadow-md flex-shrink-0 mx-4 break-words w-64 sm:w-72 md:w-80 lg:w-96"
+                            >
+                                <p className="text-text-secondary text-sm font-Inter italic leading-relaxed">
+                                    {t.quote}
+                                </p>
+                                <p className="text-xl font-semibold font-Montserrat text-center mt-4">
+                                    {t.name}
+                                </p>
+                                <p className="text-center text-sm text-text-secondary">
+                                    {t.role}
+                                </p>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
         </section>
     );
-};
-
-export default TestimonialTicker;
+}

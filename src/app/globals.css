@@ -27,40 +27,14 @@
 .flex-between {
   @apply flex justify-between items-center
 }
-
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-.FMT__container {
-  overflow: hidden;
-  position: relative;
-}
-
-.FMT__container__contents {
-  display: flex;
-  flex-wrap: nowrap;
-  animation: scroll-left 30s linear infinite;
-}
-
-.FMT__container__contents div {
-  min-width: 300px; /* Adjust width of the individual testimonial */
-  margin-right: 20px;
-}
 @keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
+  to {
+    transform: translate(calc(-50% - 0.5rem));
   }
 }
-
 .animate-marquee {
-  animation: marquee linear infinite;
+  animation: marquee 20s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
